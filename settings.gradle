@@ -2,7 +2,6 @@ pluginManagement {
     repositories {
         google()
         mavenCentral()
-        gradlePluginPortal()
     }
 }
 dependencyResolutionManagement {
@@ -12,14 +11,14 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 
-//    pluginManagement {
-//        repositories {
-//            google()
-//            mavenCentral()
-//            gradlePluginPortal()
-//        }
-//    }
-//    repositories {
+    pluginManagement {
+        repositories {
+            google()
+            mavenCentral()
+            gradlePluginPortal()
+        }
+    }
+    repositories {
 //        val mavenUsername: String = settings.extra["mavenUsername"] as String
 //        val mavenPassword: String = settings.extra["mavenPassword"] as String
 //
@@ -53,12 +52,11 @@ dependencyResolutionManagement {
 //                password = mavenPassword
 //            }
 //        }
-//        mavenLocal()
-//        google()
-//        mavenCentral()
-//    }
+        mavenLocal()
+        google()
+        mavenCentral()
+    }
 
 }
 rootProject.name = "Jfrog-Publish"
-include ':lib'
 include ':publisher'
