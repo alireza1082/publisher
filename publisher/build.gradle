@@ -1,9 +1,0 @@
-plugins {
-    id("maven-publish")
-    id("com.gradle.plugin-publish") version "1.2.1"
-    id("java-gradle-plugin")
-}
-
-dependencies {
-    implementation gradleApi()
-}

@@ -4,29 +4,30 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository
-import org.gradle.api.provider.Property
 import org.gradle.api.publish.maven.MavenPublication
 import java.net.URI
 
-interface PluginExtension : MavenPublication {
-    val artifact: Property<String>
-}
-
-class PublishTask : Plugin<Project> {
+abstract class PublishTask : Plugin<Project> {
     override fun apply(target: Project) {
+
         val extensionMaven = target.extensions.create("maven", PluginExtension::class.java)
-        extensionMaven.artifactId = extensionMaven.artifact.get()
+        val extensionMavenPub = target.extensions.create("mavenPub", MavenPublication::class.java)
+        extensionMavenPub.artifactId = extensionMaven.artifact.get()
         target.afterEvaluate {
-            extensionMaven.from(target.components.getByName("release"))
+            extensionMavenPub.from(target.components.getByName("release"))
         }
 
         val extensionMavenSnapshot =
             target.extensions.create("mavenSnapshot", PluginExtension::class.java)
-        extensionMavenSnapshot.artifactId = extensionMavenSnapshot.artifact.get()
-        target.afterEvaluate {
-            extensionMavenSnapshot.from(target.components.getByName("release"))
-        }
+//        extensionMavenSnapshot.artifactId = extensionMavenSnapshot.artifact.get()
+//        target.afterEvaluate {
+//            extensionMavenSnapshot.from(target.components.getByName("release"))
+//        }
         target.repositories.add(target.repositories.mavenRepository(project = target))
+
+        target.task("maven") { task ->
+            task.dependsOn.add("publishMavenPublicationToMavenRepository")
+        }
     }
 
     private fun getRepoUrl(project: Project): String =

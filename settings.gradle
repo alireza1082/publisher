@@ -5,7 +5,6 @@ pluginManagement {
     }
 }
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
         mavenCentral()
@@ -18,45 +17,6 @@ dependencyResolutionManagement {
             gradlePluginPortal()
         }
     }
-    repositories {
-//        val mavenUsername: String = settings.extra["mavenUsername"] as String
-//        val mavenPassword: String = settings.extra["mavenPassword"] as String
-//
-//        maven {
-//            url =
-//                    java.net.URI("${settings.extra["artifactoryUrl"]}/NedaPushNotification")
-//            isAllowInsecureProtocol = true
-//            credentials {
-//                username = mavenUsername
-//                password = mavenPassword
-//            }
-//        }
-//
-//        maven {
-//            url =
-//                    java.net.URI("${settings.extra["artifactoryUrl"]}/${settings.extra["releaseRepoKey"]}")
-//            isAllowInsecureProtocol = true
-//            credentials {
-//                username = mavenUsername
-//                password = mavenPassword
-//            }
-//        }
-//
-//
-//        maven {
-//            url =
-//                    java.net.URI("${settings.extra["artifactoryUrl"]}/${settings.extra["snapshotRepoKey"]}")
-//            isAllowInsecureProtocol = true
-//            credentials {
-//                username = mavenUsername
-//                password = mavenPassword
-//            }
-//        }
-        mavenLocal()
-        google()
-        mavenCentral()
-    }
-
 }
 rootProject.name = "Jfrog-Publish"
 include ':publisher'
